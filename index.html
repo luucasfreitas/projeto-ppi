@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acervo de Jogos PPI</title>
+    <title>Projeto PPI</title>
 </head>
 
 <body>
-    <h1>Hi</h1>
-
+    <div id="principal">
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <input type="text" id="trabalho" placeholder="Digite sua profissão">
     </div>
+    <hr>
+    <button onclick="chamar_ajax()">Inserir Usuário</button>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    function chamar_ajax() {
+        $.ajax({
+            type: 'POST',
+            url: `https://reqres.in/api/users`,
+            data: JSON.stringify({
+                name: $("#nome").val(),
+                job: $("#trabalho").val()
+            }),
+            success: function (dados) {
+                console.log(dados);
+                alert(`Novo Usuário com ID: ${dados.id}`)
+            },
+            error: function (dados) {
+                alert('Erro ao inserir usuário!');
+            },
+            dataType: 'json'
+        });
 
 
+    }
 </script>
 
 </html>
