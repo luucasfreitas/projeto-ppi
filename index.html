@@ -12,11 +12,11 @@
         <input type="text" id="trabalho" placeholder="Digite sua profissão">
     </div>
     <hr>
-    <button onclick="chamar_ajax()">Inserir Usuário</button>
+    <button onclick="insert_jogo()">Inserir Usuário</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    function chamar_ajax() {
+    function insert_jogo() {
         $.ajax({
             type: 'POST',
             url: `https://reqres.in/api/users`,
@@ -34,6 +34,13 @@
             dataType: 'json'
         });
     }
+    function update_jogo(params) {
+        
+    }
+    function delete_jogo(params) {
+        
+    }
+    
 </script>
 
 
