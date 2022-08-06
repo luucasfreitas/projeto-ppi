@@ -46,11 +46,29 @@
 </head>
 
 <body>
+
+    <nav>
+        <button onclick="get_jogos()">Listar Jogos</button>
+    </nav>
+    <div>
+        <label for="input_nome">Nome</label>
+        <input id="input_nome" type="text">
+
+        <label for="input_dev">Desenvolvedor</label>
+        <input id="input_dev" type="text">
+
+        <label for="input_categoria">Categoria</label>
+        <input id="input_categoria" type="text">
+
+        <label for="input_img">Url da imagem</label>
+        <input id="input_img " type="text">
+    </div>
     <div id="principal" class="row">
     </div>
-    </div>
-    <button onclick="get_jogos()">Get</button>
+
+
 </body>
+
 
 
 
@@ -76,7 +94,6 @@
             card.append(
                 `<div class="card green">
                     <img class="image" src="${dado['url_img']}" alt="money" />
-
                     <h2>${dado['nome']}</h2>
                     <p><strong>Desenvolvedor:</strong> ${dado['dev']}     |<strong>Categoria:</strong> ${dado['categoria']}</p>
                 </div>`);
