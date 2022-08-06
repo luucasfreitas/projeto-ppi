@@ -78,6 +78,7 @@
         <a href="#" onclick="get_jogos()">Listar Jogos</a>
     </nav>
     <div id="insert_jogo">
+        <h2>Inserir novo jogo</h2>
         <label for="input_nome">Nome</label>
         <input class="input_insert" id="input_nome" type="text">
 
@@ -88,7 +89,9 @@
         <input class="input_insert" id="input_categoria" type="text">
 
         <label for="input_img">Url da imagem</label>
-        <input class="input_insert" id="input_img " type="text">
+        <input class="input_insert" id="input_img" type="text">
+
+        <button onclick="insert_jogo()">Inserir jogo</button>
 
     </div>
     <div id="principal" class="row">
@@ -127,6 +130,35 @@
         }
 
     }
+    function insert_jogo() {
+        let nome = $('#input_nome').val();
+        let dev = $('#input_dev').val();
+        let categoria = $('#input_categoria').val();
+        let url_img = $('#input_img').val();
+        console.log(nome, dev, categoria, url_img);
+
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:3000/jogos/insertJogo`,
+            data: JSON.stringify({
+                nome: $('#input_nome').val(),
+                dev: $('#input_dev').val(),
+                categoria: $('#input_categoria').val(),
+                url_img: $('#input_img').val()
+
+            }),
+            success: function (dados) {
+                console.log(dados);
+                alert(`Jogo inserido com sucesso!`);
+                get_jogos();
+            },
+            error: function (dados) {
+                alert('Erro ao inserir jogo! Confira os dados.');
+            },
+            contentType: 'application/json'
+        });
+    }
+
     function update_jogo(params) {
 
     }
