@@ -4,16 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Projeto PPI</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #fafafa;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            border-radius: 5px;
+            box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+            padding: 30px;
+            margin: 20px;
+            width: 400px;
+            transition: all 0.3s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+
+        .card p {
+            color: #a3a5ae;
+            font-size: 16px;
+        }
+
+        .image {
+            float: right;
+            max-width: 64px;
+            max-height: 64px;
+        }
+
+        .blue {
+            border-left: 3px solid #4895ff;
+        }
+
+        .green {
+            border-left: 3px solid #3bb54a;
+        }
+
+        .red {
+            border-left: 3px solid #b3404a;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="principal">
-        <input type="text" id="nome" placeholder="Digite seu nome">
-        <input type="text" id="trabalho" placeholder="Digite sua profissão">
+
+    <div class="row">
+        <div class="card green">
+            <h2>Monetização</h2>
+            <p>Configure a monetização</p>
+            <img class="image" src="money.png" alt="money" />
+        </div>
+
+        <div class="card blue">
+            <h2>Configurações</h2>
+            <p>Configure o seu sistema</p>
+            <img class="image" src="settings.png" alt="settings" />
+        </div>
+
+        <div class="card red">
+            <h2>Artigos</h2>
+            <p>Crie e edite artigos</p>
+            <img class="image" src="article.png" alt="article" />
+        </div>
     </div>
-    <hr>
-    <button onclick="insert_jogo()">Inserir Usuário</button>
 </body>
+
+
+
+
+
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function insert_jogo() {
@@ -35,12 +108,12 @@
         });
     }
     function update_jogo(params) {
-        
+
     }
     function delete_jogo(params) {
-        
+
     }
-    
+
 </script>
 
 
