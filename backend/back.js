@@ -29,7 +29,7 @@ app.get('/',
 
 app.get('/jogos',
     (req, res) => {
-        client.query('SELECT * FROM jogos')
+        client.query('SELECT * FROM tb_jogos')
             .then(
                 function (ret) {
                     res.json(ret.rows)
