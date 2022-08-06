@@ -11,12 +11,13 @@ const client = new pg.Client(
     {
         user: 'postgres',
         host: 'localhost',
-        database: 'aulaPPI',
+        database: 'postgres',
         password: 'admin',
         port: 5432,
     }
 );
 client.connect();
+
 
 
 
