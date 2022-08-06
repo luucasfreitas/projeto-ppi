@@ -131,26 +131,31 @@
 
     }
     function insert_jogo() {
-        let nome = $('#input_nome').val();
-        let dev = $('#input_dev').val();
-        let categoria = $('#input_categoria').val();
-        let url_img = $('#input_img').val();
-        console.log(nome, dev, categoria, url_img);
+        let get_nome = $('#input_nome');
+        let get_dev = $('#input_dev');
+        let get_categoria = $('#input_categoria');
+        let get_url_img = $('#input_img');
+        // console.log(get_nome, get_dev, get_categoria, get_url_img);
 
         $.ajax({
             type: 'POST',
             url: `http://localhost:3000/jogos/insertJogo`,
             data: JSON.stringify({
-                nome: $('#input_nome').val(),
-                dev: $('#input_dev').val(),
-                categoria: $('#input_categoria').val(),
-                url_img: $('#input_img').val()
+                nome: get_nome.val(),
+                dev: get_dev.val(),
+                categoria: get_categoria.val(),
+                url_img: get_url_img.val()
 
             }),
             success: function (dados) {
                 console.log(dados);
                 alert(`Jogo inserido com sucesso!`);
                 get_jogos();
+                get_nome.val('');
+                get_dev.val('');
+                get_categoria.val('');
+                get_url_img.val('');
+
             },
             error: function (dados) {
                 alert('Erro ao inserir jogo! Confira os dados.');
