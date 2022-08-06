@@ -4,5 +4,6 @@ CREATE TABLE tb_jogos(
 	id_jogo SERIAL PRIMARY KEY,
 	nome VARCHAR(50),
 	dev VARCHAR(50),
-	categoria VARCHAR(50)
+	categoria VARCHAR(50),
+	img_url VARCHAR(250)
 );
