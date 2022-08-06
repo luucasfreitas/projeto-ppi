@@ -99,7 +99,7 @@ app.post('/jogos/insertJogo',
         client.query(
             {
                 text: 'INSERT INTO tb_jogos(nome, dev, categoria, url_img) VALUES ($1, $2, $3, $4);',
-                values: [nome, dev, categoria, '{' + url + '}']
+                values: [nome, dev, categoria, url]
             }
         )
             .then(
