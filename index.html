@@ -7,7 +7,28 @@
     <style>
         body {
             font-family: "Poppins", sans-serif;
-            background-color: #fafafa;
+            /* background-color: #fafafa; */
+        }
+
+        nav {
+            /* width: 100%; */
+            padding: 15px 20px;
+            background-color: #c7c7c7;
+        }
+
+        #insert_jogo {
+            padding-top: 15px;
+            width: 300px;
+        }
+
+        .input_insert {
+            width: 100%;
+            padding: 7px 15px;
+            margin: 8px 0;
+            /* display: inline-block; */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
         .row {
@@ -42,30 +63,36 @@
             max-width: 100px;
             max-height: 100px;
         }
+
+        a:link,
+        a:visited {
+            color: black;
+            text-decoration: none
+        }
     </style>
 </head>
 
 <body>
 
     <nav>
-        <button onclick="get_jogos()">Listar Jogos</button>
+        <a href="#" onclick="get_jogos()">Listar Jogos</a>
     </nav>
-    <div>
+    <div id="insert_jogo">
         <label for="input_nome">Nome</label>
-        <input id="input_nome" type="text">
+        <input class="input_insert" id="input_nome" type="text">
 
         <label for="input_dev">Desenvolvedor</label>
-        <input id="input_dev" type="text">
+        <input class="input_insert" id="input_dev" type="text">
 
         <label for="input_categoria">Categoria</label>
-        <input id="input_categoria" type="text">
+        <input class="input_insert" id="input_categoria" type="text">
 
         <label for="input_img">Url da imagem</label>
-        <input id="input_img " type="text">
+        <input class="input_insert" id="input_img " type="text">
+
     </div>
     <div id="principal" class="row">
     </div>
-
 
 </body>
 
