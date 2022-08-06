@@ -18,6 +18,7 @@
         }
 
         .card {
+            text-align: center;
             border-radius: 5px;
             box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
             padding: 30px;
@@ -38,42 +39,18 @@
         }
 
         .image {
-            float: right;
-            max-width: 64px;
-            max-height: 64px;
+            max-width: 100px;
+            max-height: 100px;
         }
     </style>
 </head>
 
 <body>
-    <div class="row">
-        <div class="card green">
-            <h2>Monetização</h2>
-            <p>Configure a monetização</p>
-            <img class="image" src="money.png" alt="money" />
-        </div>
-
-        <div class="card blue">
-            <h2>Configurações</h2>
-            <p>Configure o seu sistema</p>
-            <img class="image" src="settings.png" alt="settings" />
-        </div>
-
-        <div class="card red">
-            <h2>Artigos</h2>
-            <p>Crie e edite artigos</p>
-            <img class="image" src="article.png" alt="article" />
-        </div>
+    <div id="principal" class="row">
+    </div>
     </div>
     <button onclick="get_jogos()">Get</button>
 </body>
-
-
-
-
-
-
-
 
 
 
@@ -81,16 +58,30 @@
 <script>
     function get_jogos() {
         $.ajax({
-            type: 'POST',
-            url: `localhost:3000/jogos`,
+            type: 'GET',
+            url: `http://localhost:3000/jogos`,
             success: function (dados) {
                 console.log(dados);
-                // alert(`Novo Usuário com ID: ${dados.id}`)
+                gerar_card(dados);
             },
             error: function (dados) {
-                alert('Erro ao inserir usuário!');
+                alert('Erro ao recuperar dados!');
             }
         });
+    }
+    function gerar_card(dados) {
+        let card = $("#principal")
+        card.html('');
+        for (const dado of dados) {
+            card.append(
+                `<div class="card green">
+                    <img class="image" src="${dado['url_img']}" alt="money" />
+
+                    <h2>${dado['nome']}</h2>
+                    <p><strong>Desenvolvedor:</strong> ${dado['dev']}     |<strong>Categoria:</strong> ${dado['categoria']}</p>
+                </div>`);
+        }
+
     }
     function update_jogo(params) {
 
