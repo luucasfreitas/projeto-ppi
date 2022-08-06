@@ -89,24 +89,25 @@ app.get('/jogos/dev/:dev',
 
 
 
-app.post('/livros/insertJogo',
+app.post('/jogos/insertJogo',
     function (req, res) {
-        let titulo = req.body.titulo
-        let autor = req.body.autor
-        let categoria = req.body.categoria
+        let nome = req.body.nome;
+        let dev = req.body.dev;
+        let categoria = req.body.categoria;
+        let url = req.body.url_img;
 
         client.query(
             {
-                text: 'INSERT INTO tb_jogo(nome, dev, categoria) VALUES ($1, $2, $3)',
-                values: [titulo, autor, categoria]
+                text: 'INSERT INTO tb_jogos(nome, dev, categoria, url_img) VALUES ($1, $2, $3, $4);',
+                values: [nome, dev, categoria, '{' + url + '}']
             }
         )
             .then(
                 function (ret) {
                     res.json(
                         {
-                            status: 'Dados recuperados com sucesso.',
-                            dados: dados_retornados
+                            response: 'Dados inserido',
+                            dados: req.body
                         }
                     )
                 }
