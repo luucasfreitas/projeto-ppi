@@ -8,7 +8,7 @@ Esse repositório contém os seguintes arquivos:
     * [CSS](https://github.com/luucasfreitas/projeto-ppi/blob/main/styles.css)
 
 * [Back-end](https://github.com/luucasfreitas/projeto-ppi/blob/main/back.js)
-    * [Banco de dados](https://github.com/infocbra/pratica-integrada-cd-e-am-2022-1-mlrd/tree/main/sprint3)
+    * [Banco de dados](https://github.com/luucasfreitas/projeto-ppi/blob/main/tb_jogos.sql)
 
 ### :clipboard: Status do Projeto
 
