@@ -47,7 +47,7 @@
                 `<div class="card green">
                     <img class="image" src="${dado['url_img']}" alt="money" />
                     <h2>${dado['nome']}</h2>
-                    <p><strong>Desenvolvedor:</strong> ${dado['dev']} |<strong>Categoria:</strong> ${dado['categoria']}</p>
+                    <p><strong>Desenvolvedor:</strong> ${dado['dev']} <br> <strong>Categoria:</strong> ${dado['categoria']}</p>
                 </div>`
             );
         }
@@ -77,7 +77,7 @@
     }
 
     function insert_jogo() {
-        if ($("#input_nome").val() == '' || ("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
+        if ($("#input_nome").val() == '' || $("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
             alert("Preencha todos os dados");
         } else {
             let get_nome = $('#input_nome');
@@ -139,7 +139,7 @@
         );
     }
     function update_jogo() {
-        if ($("#input_nome").val() == '' || ("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
+        if ($("#input_nome").val() == '' || $("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
             alert("Preencha todos os dados");
         } else {
             $.ajax({
