@@ -2,74 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title>Projeto PPI</title>
-    <style>
-        body {
-            font-family: "Poppins", sans-serif;
-            /* background-color: #fafafa; */
-        }
+    <meta charset="utf-8" />
+    <meta name="author" content="Érika Silva e Lucas Freitas" />
+    <meta name="description" content="Projeto PPI" />
 
-        nav {
-            /* width: 100%; */
-            padding: 15px 20px;
-            background-color: #c7c7c7;
-        }
-
-        #insert_jogo {
-            padding-top: 15px;
-            width: 300px;
-        }
-
-        .input_insert {
-            width: 100%;
-            padding: 7px 15px;
-            margin: 8px 0;
-            /* display: inline-block; */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-            /* align-items: center; */
-            flex-wrap: wrap;
-        }
-
-        .card {
-            text-align: center;
-            border-radius: 5px;
-            box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
-            padding: 30px;
-            margin: 20px;
-            width: 300px;
-            transition: all 0.3s ease-out;
-            border-left: 3px solid #3bb54a;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            cursor: pointer;
-        }
-
-        .card p {
-            color: #a3a5ae;
-            font-size: 16px;
-        }
-
-        .image {
-            max-width: 100px;
-            max-height: 100px;
-        }
-
-        a:link,
-        a:visited {
-            color: black;
-            text-decoration: none
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 
 <body>
@@ -93,14 +32,14 @@
 
         <button onclick="insert_jogo()">Inserir jogo</button>
 
+        <div id="excluir"></div>
+        <div id="atualizar"></div>
+
     </div>
     <div id="principal" class="row">
     </div>
 
 </body>
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -125,8 +64,13 @@
                 `<div class="card green">
                     <img class="image" src="${dado['url_img']}" alt="money" />
                     <h2>${dado['nome']}</h2>
-                    <p><strong>Desenvolvedor:</strong> ${dado['dev']}     |<strong>Categoria:</strong> ${dado['categoria']}</p>
-                </div>`);
+                    <p><strong>Desenvolvedor:</strong> ${dado['dev']} |<strong>Categoria:</strong> ${dado['categoria']}</p>
+                </div>
+                <button onclick="update_jogo()">atualizar jogo</button>
+                <button onclick="delete_jogo()">excluir jogo</button>`
+    
+                );
+               
         }
 
     }
@@ -164,14 +108,50 @@
         });
     }
 
-    function update_jogo(params) {
+    function update_jogo() {
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:3000/livros/updatejogo`,
+                data: JSON.stringify({
+                    titulo: $("#titulo").val(),
+                    autor: $("#autor").val(),
+                    categoria: $("#categoria").val(),
+                    id: $("#id").val()
+                }),
+                success: function (dados) {
+                    console.log(dados)
+                    $('#atualizar').html("");
+                    $('#atualizar').append(`<p>Jogo ${dados.dadosEnviados.id} atualizado com sucesso.</p>`);
+                    $("#titulo").val('');
+                    $("#autor").val('');
+                    $("#categoria").val('');
+                    $("#id").val('');
+                },
+                error: function (dados) {
+                    console.log('Não foi possível atualizar dados.');
+                },
+                contentType: 'application/json',
+            });
+        }
 
-    }
     function delete_jogo(params) {
+        let n = $("#input_nome" , "input_dev", "input_categoria","input_img" ).val();
+            $.ajax({
+            type: 'DELETE',
+            url: `http://localhost:3000/livros/deletejogo/${n}`,
+                success: function(user, textost, xhr){
+                 if(xhr.status == 204){
+                 $("#excluir").text("Jogo removido com sucesso")
+            
+                }
+            },
+         error: function(){
+         alert('erro')
+        },
+        dataType: 'json'
+    })
 
-    }
+        }
 
 </script>
-
-
 </html>
