@@ -45,7 +45,7 @@
         for (const dado of dados) {
             div_row.append(
                 `<div class="card green">
-                    <img class="image" src="${dado['url_img']}" alt="money" />
+                    <img class="image" src="${dado['url_img']}" alt="Jogo" />
                     <h2>${dado['nome']}</h2>
                     <p><strong>Desenvolvedor:</strong> ${dado['dev']} <br> <strong>Categoria:</strong> ${dado['categoria']}</p>
                 </div>`
@@ -195,7 +195,7 @@
         );
     }
 
-    function delete_jogo(params) {
+    function delete_jogo() {
         $.ajax({
             type: 'POST',
             url: `http://localhost:3000/jogos/removeJogo`,
@@ -219,7 +219,6 @@
     }
 
     function buscar_jogo() {
-
         let get_id = $('#input_id');
         console.log(get_id);
         $.ajax({
