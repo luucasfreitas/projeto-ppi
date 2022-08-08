@@ -1,0 +1,64 @@
+body {
+    font-family: "Poppins", sans-serif;
+    /* background-color: #fafafa; */
+}
+
+nav {
+    /* width: 100%; */
+    padding: 15px 20px;
+    background-color: #c7c7c7;
+}
+
+#insert_jogo {
+    padding-top: 15px;
+    width: 300px;
+}
+
+.input_insert {
+    width: 100%;
+    padding: 7px 15px;
+    margin: 8px 0;
+    /* display: inline-block; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+}
+
+.card {
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    padding: 30px;
+    margin: 20px;
+    width: 300px;
+    transition: all 0.3s ease-out;
+    border-left: 3px solid #3bb54a;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.card p {
+    color: #a3a5ae;
+    font-size: 16px;
+}
+
+.image {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+a:link,
+a:visited {
+    color: black;
+    text-decoration: none
+}
