@@ -1,24 +1,17 @@
 body {
     font-family: "Poppins", sans-serif;
-    /* background-color: #fafafa; */
 }
 
 nav {
-    /* width: 100%; */
     padding: 15px 20px;
-    background-color: #c7c7c7;
+    background-color: #83b9b8;
 }
 
-#insert_jogo {
-    padding-top: 15px;
-    width: 300px;
-}
 
 .input_insert {
     width: 100%;
     padding: 7px 15px;
     margin: 8px 0;
-    /* display: inline-block; */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -27,7 +20,6 @@ nav {
 .row {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     flex-wrap: wrap;
 }
 
@@ -61,4 +53,36 @@ a:link,
 a:visited {
     color: black;
     text-decoration: none
+}
+
+a {
+    padding: 5px 20px;
+}
+
+#insert_jogo {
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); 
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 15px 30px;
+    width: 450px;
+    background-color: rgb(199, 255, 207);
+}
+
+
+#alter_jogo{
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); 
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 15px 30px;
+    width: 450px;
+    background-color: beige;
+}
+
+#delete_jogo{
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); 
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 15px 30px;
+    width: 450px;
+    background-color: rgb(228, 169, 169);
 }
