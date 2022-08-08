@@ -4,7 +4,7 @@ body {
 
 nav {
     padding: 15px 20px;
-    background-color: #83b9b8;
+    background-color: #dddddd;
 }
 
 
@@ -65,7 +65,7 @@ a {
     margin-top: 20px;
     padding: 15px 30px;
     width: 450px;
-    background-color: rgb(199, 255, 207);
+    background-color: rgb(147, 218, 158);
 }
 
 
@@ -75,7 +75,7 @@ a {
     margin-top: 20px;
     padding: 15px 30px;
     width: 450px;
-    background-color: beige;
+    background-color: rgb(240, 240, 123);
 }
 
 #delete_jogo{
