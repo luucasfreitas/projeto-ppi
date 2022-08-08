@@ -8,34 +8,16 @@
     <meta name="description" content="Projeto PPI" />
 
     <link rel="stylesheet" href="styles.css">
-    
+
 </head>
 
 <body>
-
     <nav>
-        <a href="#" onclick="get_jogos()">Listar Jogos</a>
+        <a href="#" onclick="get_jogos()">Listar Jogos</a> |
+        <a href="#" onclick="inserir_jogo()">Inserir Novo Jogo</a> |
+        <a href="#" onclick="alterar_jogo()">Alterar Jogo</a> |
+        <a href="#" onclick="excluir_jogo()">Excluir Jogo</a>
     </nav>
-    <div id="insert_jogo">
-        <h2>Inserir novo jogo</h2>
-        <label for="input_nome">Nome</label>
-        <input class="input_insert" id="input_nome" type="text">
-
-        <label for="input_dev">Desenvolvedor</label>
-        <input class="input_insert" id="input_dev" type="text">
-
-        <label for="input_categoria">Categoria</label>
-        <input class="input_insert" id="input_categoria" type="text">
-
-        <label for="input_img">Url da imagem</label>
-        <input class="input_insert" id="input_img" type="text">
-
-        <button onclick="insert_jogo()">Inserir jogo</button>
-
-        <div id="excluir"></div>
-        <div id="atualizar"></div>
-
-    </div>
     <div id="principal" class="row">
     </div>
 
@@ -56,76 +38,128 @@
             }
         });
     }
+
     function gerar_card(dados) {
-        let card = $("#principal")
-        card.html('');
+        let div_row = $("#principal")
+        div_row.html('');
         for (const dado of dados) {
-            card.append(
+            div_row.append(
                 `<div class="card green">
                     <img class="image" src="${dado['url_img']}" alt="money" />
                     <h2>${dado['nome']}</h2>
                     <p><strong>Desenvolvedor:</strong> ${dado['dev']} |<strong>Categoria:</strong> ${dado['categoria']}</p>
-                </div>
-                <button onclick="update_jogo()">atualizar jogo</button>
-                <button onclick="delete_jogo()">excluir jogo</button>`
-    
-                );
-               
+                </div>`
+            );
         }
-
     }
+
+    function inserir_jogo() {
+        let div_row = $("#principal")
+        div_row.html('');
+        div_row.append(
+            `<div id="insert_jogo">
+                <h2>Inserir novo jogo</h2>
+                <label for="input_nome">Nome</label>
+                <input class="input_insert" id="input_nome" type="text">
+
+                <label for="input_dev">Desenvolvedor</label>
+                <input class="input_insert" id="input_dev" type="text">
+
+                <label for="input_categoria">Categoria</label>
+                <input class="input_insert" id="input_categoria" type="text">
+
+                <label for="input_img">Url da imagem</label>
+                <input class="input_insert" id="input_img" type="text">
+
+                <button onclick="insert_jogo()">Inserir jogo</button>
+            </div>`
+        );
+    }
+
     function insert_jogo() {
-        let get_nome = $('#input_nome');
-        let get_dev = $('#input_dev');
-        let get_categoria = $('#input_categoria');
-        let get_url_img = $('#input_img');
-        // console.log(get_nome, get_dev, get_categoria, get_url_img);
+        if ($("#input_nome").val() == '' || ("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
+            alert("Preencha todos os dados");
+        } else {
+            let get_nome = $('#input_nome');
+            let get_dev = $('#input_dev');
+            let get_categoria = $('#input_categoria');
+            let get_url_img = $('#input_img');
 
-        $.ajax({
-            type: 'POST',
-            url: `http://localhost:3000/jogos/insertJogo`,
-            data: JSON.stringify({
-                nome: get_nome.val(),
-                dev: get_dev.val(),
-                categoria: get_categoria.val(),
-                url_img: get_url_img.val()
-
-            }),
-            success: function (dados) {
-                console.log(dados);
-                alert(`Jogo inserido com sucesso!`);
-                get_jogos();
-                get_nome.val('');
-                get_dev.val('');
-                get_categoria.val('');
-                get_url_img.val('');
-
-            },
-            error: function (dados) {
-                alert('Erro ao inserir jogo! Confira os dados.');
-            },
-            contentType: 'application/json'
-        });
-    }
-
-    function update_jogo() {
             $.ajax({
                 type: 'POST',
-                url: `http://localhost:3000/livros/updatejogo`,
+                url: `http://localhost:3000/jogos/insertJogo`,
                 data: JSON.stringify({
-                    titulo: $("#titulo").val(),
-                    autor: $("#autor").val(),
-                    categoria: $("#categoria").val(),
-                    id: $("#id").val()
+                    nome: get_nome.val(),
+                    dev: get_dev.val(),
+                    categoria: get_categoria.val(),
+                    url_img: get_url_img.val()
+
+                }),
+                success: function (dados) {
+                    console.log(dados);
+                    alert(`Jogo inserido com sucesso!`);
+                    get_jogos();
+                    get_nome.val('');
+                    get_dev.val('');
+                    get_categoria.val('');
+                    get_url_img.val('');
+
+                },
+                error: function (dados) {
+                    alert('Erro ao inserir jogo! Confira os dados.');
+                },
+                contentType: 'application/json'
+            });
+        }
+    }
+    function alterar_jogo() {
+        let div_row = $("#principal")
+        div_row.html('');
+        div_row.append(
+            `<div id="alter_jogo">
+                <h2>Alterar jogo</h2>
+                <label for="input_id">ID</label>
+                <input class="input_insert" id="input_id" type="text">
+
+                <label for="input_nome">Nome</label>
+                <input class="input_insert" id="input_nome" type="text">
+
+                <label for="input_dev">Desenvolvedor</label>
+                <input class="input_insert" id="input_dev" type="text">
+
+                <label for="input_categoria">Categoria</label>
+                <input class="input_insert" id="input_categoria" type="text">
+
+                <label for="input_img">Url da imagem</label>
+                <input class="input_insert" id="input_img" type="text">
+
+                <button onclick="buscar_jogo()">Buscar jogo</button>
+                <button onclick="update_jogo()">Alterar jogo</button>
+            </div>`
+        );
+    }
+    function update_jogo() {
+        if ($("#input_nome").val() == '' || ("#input_dev").val() == '' || $("#input_categoria").val() == '' || $('#input_img').val() == '') {
+            alert("Preencha todos os dados");
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:3000/jogos/updatejogo`,
+                data: JSON.stringify({
+                    nome: $("#input_nome").val(),
+                    dev: $("#input_dev").val(),
+                    categoria: $("#input_categoria").val(),
+                    url_img: $('#input_img').val(),
+                    id: $("#input_id").val(),
                 }),
                 success: function (dados) {
                     console.log(dados)
-                    $('#atualizar').html("");
-                    $('#atualizar').append(`<p>Jogo ${dados.dadosEnviados.id} atualizado com sucesso.</p>`);
-                    $("#titulo").val('');
-                    $("#autor").val('');
-                    $("#categoria").val('');
-                    $("#id").val('');
+                    alert("Dados atualizados com sucesso.")
+                    $("#input_nome").val('');
+                    $("#input_dev").val('');
+                    $("#input_categoria").val('');
+                    $("#input_img").val('');
+                    $('#input_id').val('')
                 },
                 error: function (dados) {
                     console.log('Não foi possível atualizar dados.');
@@ -133,25 +167,86 @@
                 contentType: 'application/json',
             });
         }
+    }
+    function excluir_jogo() {
+        let div_row = $("#principal")
+        div_row.html('');
+        div_row.append(
+            `<div id="delete_jogo">
+                <h2>Excluir jogo</h2>
+                <label for="input_id">ID</label>
+                <input class="input_insert" id="input_id" type="text">
+
+                <label for="input_nome">Nome</label>
+                <input class="input_insert" id="input_nome" type="text">
+
+                <label for="input_dev">Desenvolvedor</label>
+                <input class="input_insert" id="input_dev" type="text">
+
+                <label for="input_categoria">Categoria</label>
+                <input class="input_insert" id="input_categoria" type="text">
+
+                <label for="input_img">Url da imagem</label>
+                <input class="input_insert" id="input_img" type="text">
+
+                <button onclick="buscar_jogo()">Buscar jogo</button>
+                <button onclick="delete_jogo()">Excluir jogo</button>
+            </div>`
+        );
+    }
 
     function delete_jogo(params) {
-        let n = $("#input_nome" , "input_dev", "input_categoria","input_img" ).val();
-            $.ajax({
-            type: 'DELETE',
-            url: `http://localhost:3000/livros/deletejogo/${n}`,
-                success: function(user, textost, xhr){
-                 if(xhr.status == 204){
-                 $("#excluir").text("Jogo removido com sucesso")
-            
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:3000/jogos/removeJogo`,
+            data: JSON.stringify({
+                id: $("#input_id").val(),
+            }),
+            success: function (dados) {
+                console.log(dados)
+                alert("Dados excluídos com sucesso.")
+                $("#input_nome").val('');
+                $("#input_dev").val('');
+                $("#input_categoria").val('');
+                $("#input_img").val('');
+                $('#input_id').val('')
+            },
+            error: function (dados) {
+                console.log('Não foi possível excluir dados.');
+            },
+            contentType: 'application/json',
+        });
+    }
+
+    function buscar_jogo() {
+
+        let get_id = $('#input_id');
+        console.log(get_id);
+        $.ajax({
+            type: 'GET',
+            url: `http://localhost:3000/jogos/id/${get_id.val()}`,
+            data: JSON.stringify({
+                id: get_id.val(),
+            }),
+            success: function (dados) {
+                if (dados == '') {
+                    alert('Esse ID não se encontra na base de dados!')
+                } else {
+                    console.log(dados[0]);
+                    alert(`Dados do jogo recuperado com sucesso`);
+                    $('#input_nome').val(dados[0].nome);
+                    $('#input_dev').val(dados[0].dev);
+                    $('#input_categoria').val(dados[0].categoria);
+                    $('#input_img').val(dados[0].url_img);
                 }
             },
-         error: function(){
-         alert('erro')
-        },
-        dataType: 'json'
-    })
-
-        }
+            error: function (dados) {
+                alert('Erro ao consultar dados do jogo! Confira os dados.');
+            },
+            contentType: 'application/json'
+        });
+    }
 
 </script>
+
 </html>
