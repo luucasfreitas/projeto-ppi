@@ -24,7 +24,7 @@ app.get('/',
 );
 
 
-
+// Listar jogos
 app.get('/jogos',
     (req, res) => {
         client.query('SELECT * FROM tb_jogos')
@@ -36,6 +36,7 @@ app.get('/jogos',
     });
 
 
+// Buscar Jogos por id
 app.get('/jogos/id/:id',
     (req, res) => {
         client.query(
@@ -51,6 +52,7 @@ app.get('/jogos/id/:id',
     });
 
 
+// Inserir novos jogos via POST/JSON
 app.post('/jogos/insertJogo',
     function (req, res) {
         let nome = req.body.nome;
@@ -77,7 +79,7 @@ app.post('/jogos/insertJogo',
     });
 
 
-
+// Update jogos via POST/JSON
 app.post('/jogos/updateJogo',
     function (req, res) {
         let nome = req.body.nome
@@ -106,7 +108,7 @@ app.post('/jogos/updateJogo',
     });
 
 
-
+// Deletar jogos via POST/JSON
 app.post('/jogos/removeJogo',
     function (req, res) {
         let id = req.body.id;
