@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Conexão com o banco
 const client = new pg.Client(
     {
         user: 'postgres',
@@ -18,13 +19,13 @@ const client = new pg.Client(
 );
 client.connect();
 
-
+// Raiz do servidor
 app.get('/',
     (req, res) => { res.send("Aqui é a raiz!"); }
 );
 
 
-// Listar jogos
+// Listar jogos via GET
 app.get('/jogos',
     (req, res) => {
         client.query('SELECT * FROM tb_jogos')
@@ -36,7 +37,7 @@ app.get('/jogos',
     });
 
 
-// Buscar Jogos por id
+// Buscar Jogos por id via GET
 app.get('/jogos/id/:id',
     (req, res) => {
         client.query(
