@@ -12,7 +12,7 @@ const client = new pg.Client(
         user: 'postgres',
         host: 'localhost',
         database: 'postgres',
-        password: 'Info@1234',
+        password: 'admin',
         port: 5432,
     }
 );
@@ -40,7 +40,7 @@ app.get('/jogos/id/:id',
     (req, res) => {
         client.query(
             {
-                text: "SELECT * FROM jogos WHERE id = $1",
+                text: "SELECT * FROM tb_jogos WHERE id_jogo = $1",
                 values: [req.params.id]
             }
         ).then(
@@ -49,42 +49,6 @@ app.get('/jogos/id/:id',
             }
         );
     });
-
-
-app.get('/jogos/nome/:nome',
-    (req, res) => {
-        client.query(
-            {
-                text: "SELECT * FROM jogos WHERE nome LIKE $1",
-                values: ['%' + req.params.autor + '%']
-            }
-        ).then(
-            function (ret) {
-                res.json(ret.rows)
-            }
-        );
-    });
-
-
-app.get('/jogos/dev/:dev',
-    (req, res) => {
-        client.query(
-            {
-                text: "SELECT * FROM jogos WHERE dev LIKE $1",
-                values: ['%' + req.params.autor + '%']
-            }
-        ).then(
-            function (ret) {
-                res.json(ret.rows)
-            }
-        );
-    });
-
-
-
-
-
-
 
 
 app.post('/jogos/insertJogo',
@@ -116,21 +80,21 @@ app.post('/jogos/insertJogo',
 
 app.post('/jogos/updateJogo',
     function (req, res) {
-        let titulo = req.body.titulo
-        let autor = req.body.autor
+        let nome = req.body.nome
+        let dev = req.body.dev
         let categoria = req.body.categoria
+        let url_img = req.body.url_img
         let id = req.body.id
 
         client.query(
             {
-                text: 'UPDATE jogos SET nome = $1, dev = $2, categoria = $3 WHERE id = $4',
-                values: [titulo, autor,
-                    categoria, id]
+                text: 'UPDATE tb_jogos SET nome = $1, dev = $2, categoria = $3, url_img = $4 WHERE id_jogo = $5',
+                values: [nome, dev,
+                    categoria, url_img, id]
             }
         )
             .then(
                 function (ret) {
-
                     res.json(
                         {
                             status: 'Dados atualizados com sucesso.',
@@ -149,13 +113,12 @@ app.post('/jogos/removeJogo',
 
         client.query(
             {
-                text: 'DELETE FROM livros WHERE id = $1',
+                text: 'DELETE FROM tb_jogos WHERE id_jogo = $1',
                 values: [id]
             }
         )
             .then(
                 function (ret) {
-
                     res.json(
                         {
                             status: 'Dados deletados com sucesso.',
