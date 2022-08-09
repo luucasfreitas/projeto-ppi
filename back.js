@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); //receber parâmetros JSON
 const pg = require('pg');
 
 const app = express();
@@ -28,7 +28,7 @@ app.get('/',
 // Listar jogos via GET
 app.get('/jogos',
     (req, res) => {
-        client.query("SELECT * FROM tb_jogos")
+        client.query('SELECT * FROM tb_jogos') //Para enviar comandos SQL ao BD
             .then(
                 function (ret) {
                     res.json(ret.rows)
@@ -42,8 +42,8 @@ app.get('/jogos/id/:id',
     (req, res) => {
         client.query(
             {
-                text: "SELECT * FROM tb_jogos WHERE id_jogo = $1",
-                values: [req.params.id]
+                text: 'SELECT * FROM tb_jogos WHERE id_jogo = $1',
+                values: [req.params.id] //Requerimento parâmetros ID
             }
         ).then(
             function (ret) {
@@ -116,7 +116,7 @@ app.post('/jogos/removeJogo',
 
         client.query(
             {
-                text: "DELETE FROM tb_jogos WHERE id_jogo = $1",
+                text: 'DELETE FROM tb_jogos WHERE id_jogo = $1',
                 values: [id]
             }
         )
