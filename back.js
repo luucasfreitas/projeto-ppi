@@ -28,7 +28,7 @@ app.get('/',
 // Listar jogos via GET
 app.get('/jogos',
     (req, res) => {
-        client.query('SELECT * FROM tb_jogos')
+        client.query("SELECT * FROM tb_jogos")
             .then(
                 function (ret) {
                     res.json(ret.rows)
@@ -63,7 +63,7 @@ app.post('/jogos/insertJogo',
 
         client.query(
             {
-                text: 'INSERT INTO tb_jogos(nome, dev, categoria, url_img) VALUES ($1, $2, $3, $4);',
+                text: "INSERT INTO tb_jogos(nome, dev, categoria, url_img) VALUES ($1, $2, $3, $4);",
                 values: [nome, dev, categoria, url]
             }
         )
@@ -91,7 +91,7 @@ app.post('/jogos/updateJogo',
 
         client.query(
             {
-                text: 'UPDATE tb_jogos SET nome = $1, dev = $2, categoria = $3, url_img = $4 WHERE id_jogo = $5',
+                text: "UPDATE tb_jogos SET nome = $1, dev = $2, categoria = $3, url_img = $4 WHERE id_jogo = $5",
                 values: [nome, dev,
                     categoria, url_img, id]
             }
@@ -116,7 +116,7 @@ app.post('/jogos/removeJogo',
 
         client.query(
             {
-                text: 'DELETE FROM tb_jogos WHERE id_jogo = $1',
+                text: "DELETE FROM tb_jogos WHERE id_jogo = $1",
                 values: [id]
             }
         )
